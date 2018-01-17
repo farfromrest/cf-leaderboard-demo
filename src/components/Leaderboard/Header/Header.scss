@@ -7,6 +7,9 @@
   text-transform: uppercase;
   color: darken($gray, 10%);
   font-size: 0.8em;
+  position: sticky;
+  top: 0;
+  background-color: rgba($off-white, 0.8);
 
   .label {
     text-transform: uppercase;

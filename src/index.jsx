@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import * as reducers from './store/reducers'
 import leaderboadApiService from './services/leaderboard-api'
 
-import App from 'components/App/App'
+import App from 'containers/App/App'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

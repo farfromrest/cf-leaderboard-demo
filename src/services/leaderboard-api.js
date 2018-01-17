@@ -4,10 +4,12 @@ const URL =
   'https://games.crossfit.com/competitions/api/v1/competitions/open/2017/leaderboards'
 
 class LeaderboadApi {
-  fetchAthletes () {
+  fetchAthletes (options) {
+    const { division } = options
+
     return axios.get(URL, {
       params: {
-        division: 2,
+        division,
         scaled: 0,
         sort: 0,
         fittest: 1,

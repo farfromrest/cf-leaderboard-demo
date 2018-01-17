@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { func, array } from 'prop-types'
+import { number, func, array } from 'prop-types'
 
 import Leaderboard from 'components/Leaderboard/Leaderboard'
 import { getAthletes } from 'store/athletes/actions'
@@ -8,16 +8,42 @@ import { athletesSelector } from 'store/athletes/selectors'
 
 class LeaderboardContainer extends React.Component {
   static propTypes = {
+    division: number,
     getAthletes: func,
     athletes: array
   }
 
+  state = {
+    isLoading: true
+  }
+
   componentDidMount () {
-    this.props.getAthletes()
+    const { division } = this.props
+    this.fetchAthletes({ division })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { division } = nextProps
+
+    if (this.props.division !== division) {
+      this.fetchAthletes({ division })
+    }
+  }
+
+  fetchAthletes = options => {
+    this.setState({ isLoading: true })
+    this.props.getAthletes(options).then(() => {
+      this.setState({ isLoading: false })
+    })
   }
 
   render () {
-    return <Leaderboard athletes={this.props.athletes} />
+    return (
+      <Leaderboard
+        athletes={this.props.athletes}
+        isLoading={this.state.isLoading}
+      />
+    )
   }
 }
 

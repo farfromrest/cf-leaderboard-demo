@@ -1,0 +1,32 @@
+@import 'colors';
+
+$size: 6em;
+
+.wrapper {
+  align-self: center;
+  position: relative;
+  width: 100%;
+  height: $size;
+  margin: 1em 0;
+
+  &::before {
+    width: $size;
+    height: $size;
+    content: '';
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 0 0 $gray;
+    animation: loading 1s linear infinite;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
