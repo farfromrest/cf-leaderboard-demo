@@ -15,15 +15,21 @@ function App (props) {
         onShowWomen={props.onShowWomen}
         division={props.division}
       />
-      <Leaderboard division={props.division} />
+      <Leaderboard
+        division={props.division}
+        page={props.page}
+        onLoadMore={props.onLoadMore}
+      />
     </div>
   )
 }
 
 App.propTypes = {
   division: number,
+  page: number,
   onShowMen: func,
-  onShowWomen: func
+  onShowWomen: func,
+  onLoadMore: func
 }
 
 export default App

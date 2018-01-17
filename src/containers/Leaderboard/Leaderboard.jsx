@@ -9,12 +9,15 @@ import { athletesSelector } from 'store/athletes/selectors'
 class LeaderboardContainer extends React.Component {
   static propTypes = {
     division: number,
+    page: number,
     getAthletes: func,
+    onLoadMore: func,
     athletes: array
   }
 
   state = {
-    isLoading: true
+    isLoading: true,
+    page: 1
   }
 
   componentDidMount () {
@@ -23,10 +26,12 @@ class LeaderboardContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { division } = nextProps
+    const { division, page } = nextProps
 
     if (this.props.division !== division) {
-      this.fetchAthletes({ division })
+      this.fetchAthletes({ division, page })
+    } else if (this.props.page !== page) {
+      this.fetchMoreAthletes({ division, page })
     }
   }
 
@@ -37,11 +42,20 @@ class LeaderboardContainer extends React.Component {
     })
   }
 
+  fetchMoreAthletes = options => {
+    this.setState({ isLoadingMore: true })
+    this.props.getAthletes(options).then(() => {
+      this.setState({ isLoadingMore: false })
+    })
+  }
+
   render () {
     return (
       <Leaderboard
         athletes={this.props.athletes}
         isLoading={this.state.isLoading}
+        isLoadingMore={this.state.isLoadingMore}
+        onLoadMore={this.props.onLoadMore}
       />
     )
   }

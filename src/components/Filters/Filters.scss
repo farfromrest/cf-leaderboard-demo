@@ -5,11 +5,8 @@
 }
 
 .button {
-  line-height: 1.5;
-  text-transform: uppercase;
   color: darken($gray, 10%);
   margin: 0 10px;
-  cursor: pointer;
 
   &.active {
     color: $blue;

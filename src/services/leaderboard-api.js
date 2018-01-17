@@ -5,17 +5,17 @@ const URL =
 
 class LeaderboadApi {
   fetchAthletes (options) {
-    const { division } = options
+    const { division, page = 1 } = options
 
     return axios.get(URL, {
       params: {
         division,
+        page,
         scaled: 0,
         sort: 0,
         fittest: 1,
         fittest1: 0,
-        occupation: 0,
-        page: 1
+        occupation: 0
       }
     })
   }

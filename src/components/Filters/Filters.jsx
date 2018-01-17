@@ -2,6 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { func, number } from 'prop-types'
 
+import Button from 'components/Button/Button'
 import style from './Filters.scss'
 
 function Filters (props) {
@@ -9,18 +10,18 @@ function Filters (props) {
 
   return (
     <div className={style.wrapper}>
-      <button
+      <Button
         onClick={onShowMen}
         className={classNames(style.button, { [style.active]: division === 1 })}
       >
         Men
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={onShowWomen}
         className={classNames(style.button, { [style.active]: division === 2 })}
       >
         Women
-      </button>
+      </Button>
     </div>
   )
 }
