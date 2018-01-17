@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="rank"
+  >
+    <div
+      className="value"
+    />
+  </div>
+  <div
+    className="picture"
+  >
+    <img
+      src={undefined}
+    />
+  </div>
+  <div
+    className="name"
+  />
+  <div
+    className="region"
+  />
+  <div
+    className="points"
+  />
+</div>
+`;
