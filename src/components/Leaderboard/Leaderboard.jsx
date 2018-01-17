@@ -10,6 +10,20 @@ import style from './Leaderboard.scss'
 function Leaderboard (props) {
   const { isLoading, isLoadingMore, onLoadMore, athletes } = props
 
+  let loadMore
+
+  if (!isLoading) {
+    if (isLoadingMore) {
+      loadMore = <Loader />
+    } else {
+      loadMore = (
+        <Button onClick={onLoadMore} className={style.button}>
+          Load More
+        </Button>
+      )
+    }
+  }
+
   return (
     <div className={style.wrapper}>
       {isLoading ? (
@@ -21,13 +35,7 @@ function Leaderboard (props) {
         ]
       )}
 
-      {isLoadingMore ? (
-        <Loader />
-      ) : (
-        <Button onClick={onLoadMore} className={style.button}>
-          Load More
-        </Button>
-      )}
+      {loadMore}
     </div>
   )
 }
