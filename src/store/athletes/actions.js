@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr'
 
-import { FETCHED_ATHLETES } from './action-types'
+import { FETCHED_ATHLETES, FETCHED_MORE_ATHLETES } from './action-types'
 import * as schema from 'store/schema'
 
 export function getAthletes (options) {
@@ -11,8 +11,10 @@ export function getAthletes (options) {
         return normalize(response.data.athletes, [schema.athlete])
       })
       .then(athletes => {
+        const type =
+          options.page === 1 ? FETCHED_ATHLETES : FETCHED_MORE_ATHLETES
         return dispatch({
-          type: FETCHED_ATHLETES,
+          type,
           payload: athletes
         })
       })
