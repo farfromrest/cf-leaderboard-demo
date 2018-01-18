@@ -22,8 +22,8 @@ class LeaderboardContainer extends React.Component {
   }
 
   componentDidMount () {
-    const { division } = this.props
-    this.fetchAthletes({ division })
+    const { division, page } = this.props
+    this.fetchAthletes({ division, page })
   }
 
   componentWillReceiveProps (nextProps) {

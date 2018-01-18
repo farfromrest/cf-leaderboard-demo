@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const extractSass = new ExtractTextPlugin({
-  filename: '[name].[contenthash].css',
+  filename: '[name].[chunkhash].css',
   disable: process.env.NODE_ENV === 'development'
 })
 
@@ -19,7 +19,7 @@ module.exports = {
     extractSass
   ],
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
