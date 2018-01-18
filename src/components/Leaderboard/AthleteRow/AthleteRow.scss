@@ -1,35 +1,61 @@
 @import 'colors';
+@import 'devices';
 
 .wrapper {
   background-color: $white;
-  border: 1px solid $gray;
-  border-radius: 10px;
-  margin-bottom: 10px;
   display: grid;
-  grid-template-columns: 80px 80px 30% repeat(6, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  // grid-template-areas:
-  //   'rank pic name points score1 score2 score3 score4 score5'
-  //   'rank pic region points score1 score2 score3 score4 score5';
+
+  @media #{$phone} {
+    border-top: 1px solid $gray;
+    grid-template-columns: 50px repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 50%;
+    grid-template-areas:
+      'rank pic name name name name'
+      'rank pic region region region region'
+      'points workout1 workout2 workout3 workout4 workout5';
+
+    &:last-of-type {
+      border-bottom: 1px solid $gray;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media #{$desktop} {
+    grid-template-columns: 80px 70px 30% repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'rank pic name points workout1 workout2 workout3 workout4 workout5'
+      'rank pic region points workout1 workout2 workout3 workout4 workout5';
+    border: 1px solid $gray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
 
   &:nth-child(odd) {
-    background-color: darken($white, 3%);
+    background-color: darken($white, 1%);
   }
 
   .rank {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-area: rank;
     font-weight: 600;
     font-size: 2em;
-    border-right: 1px solid $gray;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 1px solid $gray;
+
+    @media #{$phone} {
+      font-size: 1.6em;
+    }
+
+    @media #{$desktop} {
+      font-size: 2em;
+    }
   }
 
   .picture {
-    grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-area: pic;
+    margin: 10px 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -41,36 +67,111 @@
     img {
       max-width: 100%;
     }
+
+    @media #{$phone} {
+      width: 40px;
+      height: 40px;
+    }
+
+    @media #{$desktop} {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   .name {
-    grid-column: 3;
-    grid-row: 1;
+    grid-area: name;
     align-self: end;
     font-weight: 600;
-    font-size: 1.3em;
+
+    @media #{$desktop} {
+      font-size: 1.3em;
+    }
   }
 
   .region {
-    grid-column: 3;
-    grid-row: 2;
+    grid-area: region;
     padding-top: 5px;
     color: darken($gray, 10%);
   }
 
   .workout,
   .points {
-    border-left: 1px solid lighten($gray, 10%);
-    align-self: center;
+    align-self: stretch;
+    align-items: stretch;
+    flex-direction: column;
     text-align: center;
-    font-size: 1em;
     font-weight: 500;
-    line-height: 4.5;
-    grid-row: 1 / span 2;
+    line-height: 1.3;
+    display: flex;
+
+    @media #{$phone} {
+      font-size: 0.8em;
+      border-right: 1px solid $gray;
+    }
+
+    @media #{$desktop} {
+      justify-content: center;
+      border-left: 1px solid lighten($gray, 10%);
+    }
+  }
+
+  .label {
+    background-color: lighten($black, 10%);
+    color: $white;
+    line-height: 1.6;
+
+    @media #{$desktop} {
+      display: none;
+    }
+  }
+
+  .inner-value {
+    align-self: center;
+    padding: 5px 2px;
+  }
+
+  .points {
+    grid-area: points;
+  }
+
+  .workout1 {
+    grid-area: workout1;
+  }
+
+  .workout2 {
+    grid-area: workout2;
+  }
+
+  .workout3 {
+    grid-area: workout3;
+  }
+
+  .workout4 {
+    grid-area: workout4;
+  }
+
+  .workout5 {
+    grid-area: workout5;
+    border-right: 0;
   }
 
   .score {
     color: darken($gray, 10%);
     display: inline-block;
+
+    @media #{$phone} {
+      display: block;
+    }
+
+    @media #{$desktop} {
+      &::before {
+        content: ' (';
+        margin-left: 0.4em;
+      }
+      &::after {
+        content: ')';
+      }
+    }
   }
 }

@@ -1,8 +1,9 @@
 @import 'colors';
+@import 'devices';
 
 .wrapper {
   display: grid;
-  grid-template-columns: 80px 80px 30% repeat(6, 1fr);
+  grid-template-columns: 80px 70px 30% repeat(6, 1fr);
   line-height: 2;
   text-transform: uppercase;
   color: darken($gray, 10%);
@@ -11,13 +12,18 @@
   top: 0;
   background-color: rgba($off-white, 0.8);
 
+  @media #{$phone} {
+    display: none;
+  }
+
+  .athlete {
+    grid-column: 3;
+  }
+
   .label {
     text-transform: uppercase;
     color: darken($gray, 10%);
     font-size: 0.8em;
-  }
-  .athlete {
-    grid-column: 3;
   }
 
   .rank,

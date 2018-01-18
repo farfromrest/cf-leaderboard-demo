@@ -1,5 +1,6 @@
 import React from 'react'
 import numeral from 'numeral'
+import classNames from 'classnames'
 import { arrayOf, shape, string } from 'prop-types'
 
 import style from './AthleteRow.scss'
@@ -21,11 +22,20 @@ function AthleteRow (props) {
       </div>
       <div className={style.name}>{name}</div>
       <div className={style.region}>{region}</div>
-      <div className={style.points}>{points}</div>
+      <div className={style.points}>
+        <div className={style.label}>Points</div>
+        <div className={style.innerValue}>{points}</div>
+      </div>
       {workouts.map((workout, index) => (
-        <div className={style.workout} key={index}>
-          <Rank>{workout.rank}</Rank>
-          <div className={style.score}>&nbsp;({workout.score})</div>
+        <div
+          className={classNames(style.workout, style[`workout${index + 1}`])}
+          key={index}
+        >
+          <div className={style.label}>17.{index + 1}</div>
+          <div className={style.innerValue}>
+            <Rank>{workout.rank}</Rank>
+            <div className={style.score}>{workout.score}</div>
+          </div>
         </div>
       ))}
     </div>

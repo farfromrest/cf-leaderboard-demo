@@ -1,7 +1,17 @@
 @import 'colors';
+@import 'devices';
 
 .wrapper {
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+  @media #{$phone} {
+    padding: 10px;
+  }
+
+  @media #{$desktop} {
+    padding: 20px;
+  }
 }
 
 .button {

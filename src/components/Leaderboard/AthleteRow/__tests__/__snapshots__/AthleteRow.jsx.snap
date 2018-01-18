@@ -26,6 +26,15 @@ exports[`renders correctly 1`] = `
   />
   <div
     className="points"
-  />
+  >
+    <div
+      className="label"
+    >
+      Points
+    </div>
+    <div
+      className="innerValue"
+    />
+  </div>
 </div>
 `;
