@@ -1,13 +1,9 @@
 import React from 'react'
-import numeral from 'numeral'
 import classNames from 'classnames'
 import { arrayOf, shape, string } from 'prop-types'
 
+import Number from 'components/Number/Number'
 import style from './AthleteRow.scss'
-
-function Rank (props) {
-  return numeral(props.children).format('0o')
-}
 
 function AthleteRow (props) {
   const { rank, picture, name, region, points, workouts } = props
@@ -24,7 +20,9 @@ function AthleteRow (props) {
       <div className={style.region}>{region}</div>
       <div className={style.points}>
         <div className={style.label}>Points</div>
-        <div className={style.innerValue}>{points}</div>
+        <div className={style.innerValue}>
+          <Number format='0,0'>{points}</Number>
+        </div>
       </div>
       {workouts.map((workout, index) => (
         <div
@@ -33,7 +31,7 @@ function AthleteRow (props) {
         >
           <div className={style.label}>17.{index + 1}</div>
           <div className={style.innerValue}>
-            <Rank>{workout.rank}</Rank>
+            <Number format='0o'>{workout.rank}</Number>
             <div className={style.score}>{workout.score}</div>
           </div>
         </div>

@@ -34,7 +34,9 @@ exports[`renders correctly 1`] = `
     </div>
     <div
       className="innerValue"
-    />
+    >
+      0
+    </div>
   </div>
 </div>
 `;

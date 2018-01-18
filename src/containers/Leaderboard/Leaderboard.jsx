@@ -17,6 +17,7 @@ class LeaderboardContainer extends React.Component {
 
   state = {
     isLoading: true,
+    isLoadingMore: false,
     page: 1
   }
 
