@@ -10,12 +10,15 @@ export function getAthletes (options) {
       .then(response => {
         return normalize(response.data.athletes, [schema.athlete])
       })
-      .then(athletes => {
+      .then(response => {
         const type =
           options.page === 1 ? FETCHED_ATHLETES : FETCHED_MORE_ATHLETES
         return dispatch({
           type,
-          payload: athletes
+          payload: {
+            entities: response.entities.athletes,
+            result: response.result
+          }
         })
       })
   }

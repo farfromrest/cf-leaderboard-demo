@@ -7,12 +7,12 @@ export default function reduce (
   switch (action.type) {
     case FETCHED_ATHLETES:
       return {
-        entities: { ...action.payload.entities.athletes },
+        entities: { ...action.payload.entities },
         result: [...action.payload.result]
       }
     case FETCHED_MORE_ATHLETES:
       return {
-        entities: { ...state.entities, ...action.payload.entities.athletes },
+        entities: { ...state.entities, ...action.payload.entities },
         result: [...state.result, ...action.payload.result]
       }
     default:
